@@ -14,8 +14,6 @@ CONSUL_CONFIG_OVERRIDE_FILE=/etc/consul.d/z-override.json
 
 echo "Configure Bastion Consul client"
 
-# CHANGED:
-# "retry_join": ["provider=${provider} tag_key=Consul-Auto-Join tag_value=${name}"]
 cat <<CONFIG | sudo tee $CONSUL_CONFIG_FILE
 {
   "datacenter": "${name}",

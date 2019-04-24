@@ -65,12 +65,16 @@ data "template_file" "hashistack_quick_start" {
     name             = "${var.name}"
     provider         = "${var.provider}"
     local_ip_url     = "${var.local_ip_url}"
-    consul_bootstrap = "${length(module.network_azure.bastion_ips_public)}"
+    // TODO
+    // consul_bootstrap  = "${length(module.network_azure.bastion_ips_public)}"
+    consul_bootstrap = 1
     consul_override  = "${var.consul_server_config_override != "" ? true : false}"
     consul_config    = "${var.consul_server_config_override}"
     vault_override   = "${var.vault_config_override != "" ? true : false}"
     vault_config     = "${var.vault_config_override}"
-    nomad_bootstrap  = "${length(module.network_azure.bastion_ips_public)}"
+    // TODO
+    // nomad_bootstrap  = "${length(module.network_azure.bastion_ips_public)}"
+    nomad_bootstrap = 1
     nomad_override   = "${var.nomad_config_override != "" ? true : false}"
     nomad_config     = "${var.nomad_config_override}"
 

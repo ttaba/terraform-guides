@@ -10,16 +10,17 @@ module "ssh_key" {
 
 module "network_azure" {
   source           = "git@github.com:hashicorp-modules/network-azure.git"
-  name             = "${var.name}"
-  environment      = "${var.environment}"
-  location         = "${var.azure_region}"
-  os               = "${var.azure_os}"
-  admin_username   = "${var.admin_username}"
-  admin_password   = "${var.admin_password}"
-  public_key_data  = "${module.ssh_key.public_key_openssh}"
+  // source          = "/Users/neil/src/github.com/hashicorp-modules/network-azure"
+  name            = "${var.name}"
+  environment     = "${var.environment}"
+  location        = "${var.azure_region}"
+  os              = "${var.azure_os}"
+  admin_username  = "${var.admin_username}"
+  admin_password  = "${var.admin_password}"
+  public_key_data = "${module.ssh_key.public_key_openssh}"
   bastion_vm_size = "${var.azure_vm_size}"
-  vnet_cidr        = "${var.azure_vnet_cidr}"
-  subnet_cidrs     = ["${var.azure_subnet_cidrs}"]
+  vnet_cidr       = "${var.azure_vnet_cidr}"
+  subnet_cidr     = "${var.azure_subnet_cidr}"
 
   custom_data = <<EOF
 ${data.template_file.base_install.rendered}
@@ -130,6 +131,7 @@ resource "azurerm_network_security_rule" "bastion_tcp_8500" {
 
 module "hashistack_azure" {
   source                     = "git@github.com:hashicorp-modules/hashistack-azure.git"
+  // source                     = "/Users/neil/src/github.com/hashicorp-modules/hashistack-azure"
   name                       = "${var.name}"
   provider                   = "${var.provider}"
   environment                = "${var.environment}"
@@ -141,7 +143,7 @@ module "hashistack_azure" {
   azure_asg_initial_vm_count = "${var.azure_asg_initial_vm_count}"
   azure_os                   = "${var.azure_os}"
   azure_vm_size              = "${var.azure_vm_size}"
-  azure_subnet_id            = "${module.network_azure.subnet_ids[0]}"
+  azure_subnet_id            = "${module.network_azure.subnet_id}"
 
   azure_vm_custom_data = <<EOF
 ${data.template_file.base_install.rendered}

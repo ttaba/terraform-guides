@@ -89,10 +89,10 @@ variable "azure_vnet_cidr" {
   default     = "172.31.0.0/16"
 }
 
-variable "azure_subnet_cidrs" {
-  description = "The public network CIDRs to add to the subnet."
-  type        = "list"
-  default     = ["172.31.0.0/20"]
+variable "azure_subnet_cidr" {
+  description = "The public network CIDR to add to the subnet."
+  type        = "string"
+  default     = "172.31.0.0/20"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------

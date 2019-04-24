@@ -18,8 +18,6 @@ NOMAD_CONFIG_OVERRIDE_FILE=/etc/nomad.d/z-override.hcl
 
 echo "Configure HashiStack Consul client"
 
-# CHANGED:
-# "retry_join": ["provider=${provider} tag_key=Consul-Auto-Join tag_value=${name}"]
 cat <<CONFIG | sudo tee $CONSUL_CONFIG_FILE
 {
   "datacenter": "${name}",
