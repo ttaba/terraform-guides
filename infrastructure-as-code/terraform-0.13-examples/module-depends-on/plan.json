@@ -63,7 +63,7 @@
         {
           "resources": [
             {
-              "address": "module.write-files.local_file.apple",
+              "address": "module.write-files[0].local_file.apple",
               "mode": "managed",
               "type": "local_file",
               "name": "apple",
@@ -79,7 +79,7 @@
               }
             },
             {
-              "address": "module.write-files.local_file.banana",
+              "address": "module.write-files[0].local_file.banana",
               "mode": "managed",
               "type": "local_file",
               "name": "banana",
@@ -95,7 +95,7 @@
               }
             },
             {
-              "address": "module.write-files.local_file.orange",
+              "address": "module.write-files[0].local_file.orange",
               "mode": "managed",
               "type": "local_file",
               "name": "orange",
@@ -111,7 +111,60 @@
               }
             }
           ],
-          "address": "module.write-files"
+          "address": "module.write-files[0]"
+        },
+        {
+          "resources": [
+            {
+              "address": "module.write-files[1].local_file.apple",
+              "mode": "managed",
+              "type": "local_file",
+              "name": "apple",
+              "provider_name": "registry.terraform.io/hashicorp/local",
+              "schema_version": 0,
+              "values": {
+                "content": "apple",
+                "content_base64": null,
+                "directory_permission": "0777",
+                "file_permission": "0777",
+                "filename": "./apple.txt",
+                "sensitive_content": null
+              }
+            },
+            {
+              "address": "module.write-files[1].local_file.banana",
+              "mode": "managed",
+              "type": "local_file",
+              "name": "banana",
+              "provider_name": "registry.terraform.io/hashicorp/local",
+              "schema_version": 0,
+              "values": {
+                "content": "banana",
+                "content_base64": null,
+                "directory_permission": "0777",
+                "file_permission": "0777",
+                "filename": "./banana.txt",
+                "sensitive_content": null
+              }
+            },
+            {
+              "address": "module.write-files[1].local_file.orange",
+              "mode": "managed",
+              "type": "local_file",
+              "name": "orange",
+              "provider_name": "registry.terraform.io/hashicorp/local",
+              "schema_version": 0,
+              "values": {
+                "content": "orange",
+                "content_base64": null,
+                "directory_permission": "0777",
+                "file_permission": "0777",
+                "filename": "./orange.txt",
+                "sensitive_content": null
+              }
+            }
+          ],
+          "address": "module.write-files[1]"
         }
       ]
     }
@@ -208,8 +261,8 @@
       }
     },
     {
-      "address": "module.write-files.local_file.apple",
-      "module_address": "module.write-files",
+      "address": "module.write-files[0].local_file.apple",
+      "module_address": "module.write-files[0]",
       "mode": "managed",
       "type": "local_file",
       "name": "apple",
@@ -233,8 +286,8 @@
       }
     },
     {
-      "address": "module.write-files.local_file.banana",
-      "module_address": "module.write-files",
+      "address": "module.write-files[0].local_file.banana",
+      "module_address": "module.write-files[0]",
       "mode": "managed",
       "type": "local_file",
       "name": "banana",
@@ -258,8 +311,83 @@
       }
     },
     {
-      "address": "module.write-files.local_file.orange",
-      "module_address": "module.write-files",
+      "address": "module.write-files[0].local_file.orange",
+      "module_address": "module.write-files[0]",
+      "mode": "managed",
+      "type": "local_file",
+      "name": "orange",
+      "provider_name": "registry.terraform.io/hashicorp/local",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "content": "orange",
+          "content_base64": null,
+          "directory_permission": "0777",
+          "file_permission": "0777",
+          "filename": "./orange.txt",
+          "sensitive_content": null
+        },
+        "after_unknown": {
+          "id": true
+        }
+      }
+    },
+    {
+      "address": "module.write-files[1].local_file.apple",
+      "module_address": "module.write-files[1]",
+      "mode": "managed",
+      "type": "local_file",
+      "name": "apple",
+      "provider_name": "registry.terraform.io/hashicorp/local",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "content": "apple",
+          "content_base64": null,
+          "directory_permission": "0777",
+          "file_permission": "0777",
+          "filename": "./apple.txt",
+          "sensitive_content": null
+        },
+        "after_unknown": {
+          "id": true
+        }
+      }
+    },
+    {
+      "address": "module.write-files[1].local_file.banana",
+      "module_address": "module.write-files[1]",
+      "mode": "managed",
+      "type": "local_file",
+      "name": "banana",
+      "provider_name": "registry.terraform.io/hashicorp/local",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "content": "banana",
+          "content_base64": null,
+          "directory_permission": "0777",
+          "file_permission": "0777",
+          "filename": "./banana.txt",
+          "sensitive_content": null
+        },
+        "after_unknown": {
+          "id": true
+        }
+      }
+    },
+    {
+      "address": "module.write-files[1].local_file.orange",
+      "module_address": "module.write-files[1]",
       "mode": "managed",
       "type": "local_file",
       "name": "orange",
@@ -392,6 +520,9 @@
         },
         "write-files": {
           "source": "./modules/write-files",
+          "count_expression": {
+            "constant_value": 2
+          },
           "module": {
             "resources": [
               {
